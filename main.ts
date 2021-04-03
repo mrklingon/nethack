@@ -12,6 +12,7 @@ input.onButtonPressed(Button.A, function () {
         newpos = newpos - 24
     }
     if (0 > newpos) {
+        basic.showIcon(IconNames.Heart)
         newpos = newpos + 24
     }
     if (!(led.point(Xpos(newpos), Ypos(newpos)))) {
@@ -53,6 +54,8 @@ function Xpos (num: number) {
     x = num % 5
     return x
 }
+basic.showIcon(IconNames.StickFigure)
+basic.showIcon(IconNames.Diamond)
 let x: number = 0
 let y: number = 0
 let room: number = 0
