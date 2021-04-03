@@ -43,7 +43,7 @@ function Ypos (num: number) {
     return y
 }
 function Exit (num: number) {
-    return doors[1 + 0 * 2]
+    return doors[1 + num * 2]
 }
 function Xpos (num: number) {
     x = num % 5
