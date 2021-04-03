@@ -2,6 +2,7 @@ function EnterRoom (num: number) {
     rooms[num].showImage(0)
     pos = Enter(num)
     led.toggle(Xpos(pos), Ypos(pos))
+    Ex = Exit(num)
 }
 input.onButtonPressed(Button.A, function () {
     newpos = pos + Dirs[dir]
@@ -31,6 +32,9 @@ input.onGesture(Gesture.Shake, function () {
     basic.showNumber(room)
     basic.showString("DIR")
     basic.showNumber(dir)
+    basic.showString("Pos/ex")
+    basic.showNumber(pos)
+    basic.showNumber(Ex)
     rooms[room].showImage(0)
     led.toggle(Xpos(pos), Ypos(pos))
 })
@@ -48,6 +52,7 @@ function Xpos (num: number) {
 let x = 0
 let y = 0
 let newpos = 0
+let Ex = 0
 let room = 0
 let Dirs: number[] = []
 let pos = 0
@@ -69,9 +74,18 @@ let Room2 = images.createImage(`
     # . # . .
     `)
 rooms = [Room1, Room2]
-doors = [0, 24, 24, 4]
+doors = [0, 24, 10, 4]
 dir = 2
 pos = 0
 Dirs = [1, 6, 5, 4, -1, -6, -5, -4]
 room = 0
 EnterRoom(room)
+basic.forever(function () {
+    if (pos == Ex) {
+        room += 1
+        if (room == 2) {
+            room = 0
+        }
+        EnterRoom(room)
+    }
+})
