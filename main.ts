@@ -7,6 +7,7 @@ function EnterRoom (num: number) {
 }
 input.onButtonPressed(Button.A, function () {
     newpos = pos + Dirs[dir]
+    Treas = Treas - 50
     if (24 < newpos) {
         newpos = newpos - 24
     }
@@ -24,6 +25,7 @@ function Enter (num: number) {
 }
 input.onButtonPressed(Button.B, function () {
     dir += 1
+    Treas = Treas - 10
     if (dir > 7) {
         dir = 0
     }
@@ -33,9 +35,10 @@ input.onGesture(Gesture.Shake, function () {
     basic.showNumber(room)
     basic.showString("DIR")
     basic.showNumber(dir)
-    basic.showString("Pos/ex")
+    basic.showString("Pos/ex/score")
     basic.showNumber(pos)
     basic.showNumber(Ex)
+    basic.showNumber(game.score())
     rooms[room].showImage(0)
     led.toggle(Xpos(pos), Ypos(pos))
 })
@@ -97,9 +100,12 @@ Dirs = [1, 6, 5, 4, -1, -6, -5, -4]
 EnterRoom(0)
 basic.forever(function () {
     if (pos == Ex) {
+        game.setScore(game.score()+Treas)
+        Treas = 1000
+        
         room += 1
         if (room == 4) {
-            room = 0
+            game.gameOver()
         }
         EnterRoom(room)
     }
