@@ -3,6 +3,7 @@ function EnterRoom (num: number) {
     pos = Enter(num)
     led.toggle(Xpos(pos), Ypos(pos))
     Ex = Exit(num)
+    Treas = 1000
 }
 input.onButtonPressed(Button.A, function () {
     newpos = pos + Dirs[dir]
@@ -49,14 +50,15 @@ function Xpos (num: number) {
     x = num % 5
     return x
 }
-let x = 0
-let y = 0
-let newpos = 0
-let Ex = 0
-let room = 0
+let x: null = null
+let y: null = null
+let newpos: null = null
+let Ex: null = null
+let Treas: null = null
+let room: null = null
 let Dirs: number[] = []
-let pos = 0
-let dir = 0
+let pos: null = null
+let dir: null = null
 let doors: number[] = []
 let rooms: Image[] = []
 let Room1 = images.createImage(`
@@ -73,12 +75,28 @@ let Room2 = images.createImage(`
     . . . . #
     # . # . .
     `)
-rooms = [Room1, Room2]
-doors = [0, 24, 10, 4]
+let Room3 = images.createImage(`
+    # # # # #
+    # # . . .
+    # . # . #
+    # . . . #
+    # . # # .
+    `)
+let Room4 = images.createImage(`
+    . # # # .
+    . # . . .
+    . # . . #
+    . . . . #
+    # . # # #
+    `)
+rooms = [Room1, Room2, Room3]
+doors = [0, 24, 10, 4, 21, 7, 18, 0]
 dir = 2
 pos = 0
 Dirs = [1, 6, 5, 4, -1, -6, -5, -4]
 room = 0
+game.setScore(0)
+Treas = 0
 EnterRoom(room)
 basic.forever(function () {
     if (pos == Ex) {
