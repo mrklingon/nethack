@@ -89,25 +89,35 @@ let Room3 = images.createImage(`
     # . # # .
     `)
 let Room4 = images.createImage(`
+    # # # # #
+    . . . . .
+    . # # # #
+    . . . . #
+    # . # # #
+    `)
+let Room5 = images.createImage(`
     . # # # .
     . # . . .
     . # . . #
     . . . . #
     # . # # #
     `)
-rooms = [Room1, Room2, Room3, Room4]
+rooms = [Room1, Room2, Room3, Room4, Room5]
 dir = 2
 pos = 0
-doors = [0, 24, 10, 4, 21, 7, 18, 0]
+doors = [0, 24, 10, 4, 21, 7, 7 , 18, 18, 0]
 Dirs = [1, 6, 5, 4, -1, -6, -5, -4]
+music.startMelody(music.builtInMelody(Melodies.Prelude), MelodyOptions.Once)
 EnterRoom(0)
+
 basic.forever(function () {
     if (pos == Ex) {
         game.setScore(game.score()+Treas)
         Treas = 1000
         
         room += 1
-        if (room == 4) {
+        if (room == 5) {
+            music.startMelody(music.builtInMelody(Melodies.Nyan), MelodyOptions.Once)
             game.gameOver()
         }
         EnterRoom(room)
