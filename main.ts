@@ -67,15 +67,27 @@ let Dirs: number[] = []
 let doors: number[] = []
 let pos = 0
 let dir = 0
-let rooms: number[] = []
+let rooms: Image[] = []
 music.setBuiltInSpeakerEnabled(false)
 basic.showIcon(IconNames.StickFigure)
 basic.showIcon(IconNames.Diamond)
-let Room1 = 0
-let Room2 = 0
-let Room3 = images.createImage(`
+let Room1 = images.createImage(`
     . # # # #
     . # # . #
+    . . # . #
+    . . . . #
+    # . # . .
+    `)
+let Room2 = images.createImage(`
+    # # # # #
+    # # . . .
+    # . # . #
+    # . . . #
+    # . # # .
+    `)
+let Room3 = images.createImage(`
+    # # # # .
+    # # # . .
     . . # . #
     . . . . #
     # . # . .
