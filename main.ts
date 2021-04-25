@@ -78,14 +78,14 @@ let Room1 = images.createImage(`
     . . . . #
     # . # . .
     `)
-let Room2 = images.createImage(`
+let Room3 = images.createImage(`
     # # # # #
     # # . . .
     # . # . #
     # . . . #
     # . # # .
     `)
-let Room3 = images.createImage(`
+let Room2 = images.createImage(`
     # # # # .
     # # # . .
     . . # . #
