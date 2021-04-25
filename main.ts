@@ -44,7 +44,13 @@ input.onGesture(Gesture.Shake, function () {
     led.toggle(Xpos(pos), Ypos(pos))
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-    music.setBuiltInSpeakerEnabled(true)
+    if (spkr == 0) {
+        music.setBuiltInSpeakerEnabled(true)
+        spkr = 1
+    } else {
+        music.setBuiltInSpeakerEnabled(false)
+        spkr = 0
+    }
 })
 function Ypos (num: number) {
     y = Math.trunc(num / 5)
@@ -68,12 +74,21 @@ let doors: number[] = []
 let pos = 0
 let dir = 0
 let rooms: Image[] = []
+let spkr = 0
 music.setBuiltInSpeakerEnabled(false)
+spkr = 0
 basic.showIcon(IconNames.StickFigure)
 basic.showIcon(IconNames.Diamond)
 let Room1 = images.createImage(`
     . # # # #
     . # # . #
+    . . # . #
+    . . . . #
+    # . # . .
+    `)
+let Room2 = images.createImage(`
+    # # # # .
+    # # # . .
     . . # . #
     . . . . #
     # . # . .
@@ -84,13 +99,6 @@ let Room3 = images.createImage(`
     # . # . #
     # . . . #
     # . # # .
-    `)
-let Room2 = images.createImage(`
-    # # # # .
-    # # # . .
-    . . # . #
-    . . . . #
-    # . # . .
     `)
 let Room4 = images.createImage(`
     # # # # #
